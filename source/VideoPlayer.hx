@@ -19,7 +19,7 @@ import Sys;
 
 using StringTools;
 
-class WebmPlayerS extends FlxSprite
+class VideoPlayer extends FlxSprite
 {
 	public var videoplayer:WebmPlayer;
 	public var endcallback:Void->Void = null;
