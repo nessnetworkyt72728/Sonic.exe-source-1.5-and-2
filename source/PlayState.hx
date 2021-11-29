@@ -61,6 +61,7 @@ import openfl.utils.AssetLibrary;
 import openfl.utils.AssetManifest;
 import openfl.utils.AssetType;
 import ui.Mobilecontrols;
+import ui.FlxVirtualPad;
 
 using StringTools;
 
@@ -315,6 +316,10 @@ class PlayState extends MusicBeatState
 
 	#if mobileC
 	var mcontrols:Mobilecontrols; 
+	#end
+    
+	#if mobileC
+	var thefuckinkey:FlxVirtualPad;
 	#end
 
 	//my watermark lmao
@@ -1965,6 +1970,9 @@ class PlayState extends MusicBeatState
 
 		#if mobileC
 		mcontrols = new Mobilecontrols();
+		thefuckinkey = new FlxVirtualPad(NONE, A);
+		add(thefuckinkey);
+		controls.setVirtualPadPlayState(thefuckinkey._virtualPad, A);
 		switch (mcontrols.mode)
 		{
 			case VIRTUALPAD_RIGHT | VIRTUALPAD_LEFT | VIRTUALPAD_CUSTOM:
@@ -1981,11 +1989,17 @@ class PlayState extends MusicBeatState
 		FlxG.cameras.add(camcontrol);
 		camcontrol.bgColor.alpha = 0;
 		mcontrols.cameras = [camcontrol];
+		thefuckinkey.cameras = [camcontrol];
 
 		mcontrols.visible = false;
+		thefuckinkey.visible = false;
+
 
 		add(mcontrols);
+		add(thefuckinkey);
 	    #end
+
+		// please excuse my dumb fucking code -Daninnocent
 
 		// if (SONG.song == 'South')
 		// FlxG.camera.alpha = 0.7;
@@ -2918,6 +2932,13 @@ class PlayState extends MusicBeatState
 	{
 		#if mobileC
 		mcontrols.visible = true;
+		#end
+
+		#if mobileC
+		if(mcontrols.mode == HITBOX)
+		{
+			thefuckinkey.visible = true;
+		}
 		#end
 
 		FlxG.log.add(storyPlaylist);
@@ -5017,6 +5038,10 @@ class PlayState extends MusicBeatState
 		mcontrols.visible = false;
 		#end
 
+		#if mobileC
+		thefuckinkey.visible = false;
+		#end
+
 		camHUD.visible = false;
 
 		FlxG.stage.removeEventListener(KeyboardEvent.KEY_DOWN, handleInput);
@@ -5108,8 +5133,7 @@ class PlayState extends MusicBeatState
 
 					if (curSong == 'triple-trouble')
 					{
-						var video:VideoPlayer = new VideoPlayer();
-						video('videos/soundtestcodes.webm');
+						var video = new VideoPlayer('videos/soundtestcodes.webm');
 						video.finishCallback = () -> {
 							remove(video);
 							LoadingState.loadAndSwitchState(new MainMenuState());
@@ -5179,8 +5203,7 @@ class PlayState extends MusicBeatState
 					if (curSong.toLowerCase() == 'too-slow' && storyDifficulty == 2)
 					{
 						FlxG.save.data.storyProgress = 1;
-						var video:VideoPlayer = new VideoPlayer();
-						video('videos/tooslowcutscene2.webm');
+						var video = new VideoPlayer('videos/tooslowcutscene2.webm');
 						video.finishCallback = () -> {
 							remove(video);
 							LoadingState.loadAndSwitchState(new PlayState());
@@ -5199,8 +5222,7 @@ class PlayState extends MusicBeatState
 					{
 						FlxG.save.data.storyProgress = 2;
 						FlxG.save.data.soundTestUnlocked = true;
-						var video:VideoPlayer = new VideoPlayer();
-						video('videos/youcantruncutscene2.webm');
+						var video = new VideoPlayer('videos/youcantruncutscene2.webm');
 						video.finishCallback = () -> {
 							remove(video);
 							LoadingState.loadAndSwitchState(new PlayState());
@@ -5248,8 +5270,7 @@ class PlayState extends MusicBeatState
 							FlxG.switchState(new FreeplayState());
 						}
 					case 'too-slow':
-						var video:VideoPlayer = new VideoPlayer();
-						video('videos/tooslowcutscene2.webm');
+						var video = new VideoPlayer('videos/tooslowcutscene2.webm');
 						video.finishCallback = () -> {
 							remove(video);
 							LoadingState.loadAndSwitchState(new MainMenuState());
@@ -5260,8 +5281,7 @@ class PlayState extends MusicBeatState
 						add(video);
 						video.play();
 					case 'you-cant-run':
-						var video:VideoPlayer = new VideoPlayer();
-						video('videos/youcantruncutscene2.webm');
+						var video = new VideoPlayer('videos/youcantruncutscene2.webm');
 						video.finishCallback = () -> {
 							remove(video);
 							LoadingState.loadAndSwitchState(new MainMenuState());
@@ -5272,8 +5292,7 @@ class PlayState extends MusicBeatState
 						add(video);
 						video.play();
 					case 'triple-trouble':
-						var video:VideoPlayer = new VideoPlayer();
-						video('videos/soundtestcodes.webm');
+						var video = new VideoPlayer('videos/soundtestcodes.webm');
 						video.finishCallback = () -> {
 							remove(video);
 							LoadingState.loadAndSwitchState(new MainMenuState());
@@ -5929,7 +5948,7 @@ class PlayState extends MusicBeatState
 		// nada
 	}
 
-	public function backgroundVideo(source:String) // for background videos
+	/*public function backgroundVideo(source:String) // for background videos
 	{
 		#if cpp
 		useVideo = true;
@@ -5986,7 +6005,7 @@ class PlayState extends MusicBeatState
 		else
 			webmHandler.resume();
 		#end
-	}
+	}*/
 
 	function noteMiss(direction:Int = 1, daNote:Note):Void
 	{
