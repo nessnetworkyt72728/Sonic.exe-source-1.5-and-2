@@ -12,6 +12,7 @@ import openfl.Lib;
 import openfl.display.FPS;
 import openfl.display.Sprite;
 import openfl.events.Event;
+import lime.system.System;
 
 class Main extends Sprite
 {
@@ -19,11 +20,15 @@ class Main extends Sprite
 	var gameHeight:Int = 720; // Height of the game in pixels (might be less / more in actual pixels depending on your zoom).
 	var initialState:Class<FlxState> = TitleState; // The FlxState the game starts with.
 	var zoom:Float = -1; // If -1, zoom is automatically calculated to fit the window dimensions.
-	var framerate:Int = 120; // How many frames per second the game should run at.
+	var framerate:Int = 60; // How many frames per second the game should run at.
 	var skipSplash:Bool = true; // Whether to skip the flixel splash screen that appears in release mode.
 	var startFullscreen:Bool = false; // Whether to start the game in fullscreen on desktop targets
 
 	public static var watermarks = true; // Whether to put Kade Engine liteartly anywhere
+
+	public static var instance:Main;
+
+	public static var path:String = System.applicationStorageDirectory;
 
 	// You can pretty much ignore everything from here on - your code should go in your states.
 
@@ -75,43 +80,49 @@ class Main extends Sprite
 			gameHeight = Math.ceil(stageHeight / zoom);
 		}
 
-		#if cpp
+		#if android
+        gameWidth = 1280;
+        gameHeight = 720;
+        framerate = 60;
+        #end
+
+		// #if cpp
 		initialState = TitleState; //No more cache, fuck you, actaully no, actually yes, actaully no, actually yes, actaully no, actually yes, actaully no, actually yes, actually no
 		game = new FlxGame(gameWidth, gameHeight, initialState, zoom, framerate, framerate, skipSplash, startFullscreen);
-		#else
-		game = new FlxGame(gameWidth, gameHeight, initialState, zoom, framerate, framerate, skipSplash, startFullscreen);
-		#end
+		// #else
+		// game = new FlxGame(gameWidth, gameHeight, initialState, zoom, framerate, framerate, skipSplash, startFullscreen);
+		// #end
 		addChild(game);
 
-		var ourSource:String = "assets/videos/DO NOT DELETE OR GAME WILL CRASH/dontDelete.webm";
+		// var ourSource:String = "assets/videos/DO NOT DELETE OR GAME WILL CRASH/dontDelete.webm";
 
-		#if web
-		var str1:String = "HTML CRAP";
-		var vHandler = new VideoHandler();
-		vHandler.init1();
-		vHandler.video.name = str1;
-		addChild(vHandler.video);
-		vHandler.init2();
-		GlobalVideo.setVid(vHandler);
-		vHandler.source(ourSource);
-		#elseif desktop
-		var str1:String = "WEBM SHIT"; 
-		var webmHandle = new WebmHandler();
-		webmHandle.source(ourSource);
-		webmHandle.makePlayer();
-		webmHandle.webm.name = str1;
-		addChild(webmHandle.webm);
-		GlobalVideo.setWebm(webmHandle);
-		#end
+		// #if web
+		// var str1:String = "HTML CRAP";
+		// var vHandler = new VideoHandler();
+		// vHandler.init1();
+		// vHandler.video.name = str1;
+		// addChild(vHandler.video);
+		// vHandler.init2();
+		// GlobalVideo.setVid(vHandler);
+		// vHandler.source(ourSource);
+		// #elseif desktop
+		// var str1:String = "WEBM SHIT"; 
+		// var webmHandle = new WebmHandler();
+		// webmHandle.source(ourSource);
+		// webmHandle.makePlayer();
+		// webmHandle.webm.name = str1;
+		// addChild(webmHandle.webm);
+		// GlobalVideo.setWebm(webmHandle);
+		// #end
 
 
 		
-		#if !mobile
+		// #if !mobile
 		fpsCounter = new FPS(10, 3, 0xFFFFFF);
 		addChild(fpsCounter);
 		toggleFPS(FlxG.save.data.fps);
 
-		#end
+		// #end
 	}
 
 	var game:FlxGame;

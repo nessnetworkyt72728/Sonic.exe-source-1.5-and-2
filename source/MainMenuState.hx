@@ -13,7 +13,7 @@ import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
-import io.newgrounds.NG;
+// import io.newgrounds.NG;
 import lime.app.Application;
 
 #if windows
@@ -190,6 +190,10 @@ class MainMenuState extends MusicBeatState
 		changeItem();
 
 		super.create();
+
+		#if mobileC
+		addVirtualPad(FULL, A_B);
+		#end
 	}
 
 	var selectedSomethin:Bool = false;
@@ -268,13 +272,13 @@ class MainMenuState extends MusicBeatState
 				}
 			}
 
-			if (FlxG.keys.justPressed.UP || FlxG.keys.justPressed.W)
+			if (controls.UP_P|| FlxG.keys.justPressed.W)
 			{
 				FlxG.sound.play(Paths.sound('scrollMenu'));
 				changeItem(-1);
 			}
 
-			if (FlxG.keys.justPressed.DOWN || FlxG.keys.justPressed.S)
+			if (controls.DOWN_P || FlxG.keys.justPressed.S)
 			{
 				FlxG.sound.play(Paths.sound('scrollMenu'));
 				changeItem(1);

@@ -80,8 +80,10 @@ class OptionsMenu extends MusicBeatState
 			#if
 			new RealBot('The coolest botplay')
 			#end
+		]),
+		new OptionCategory("Mobile Settings", [
+			new CustomControls("Customize Your Controls For Your Android Device")
 		])
-		
 	];
 
 	public var acceptInput:Bool = true;

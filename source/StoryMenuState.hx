@@ -166,6 +166,10 @@ class StoryMenuState extends MusicBeatState
 		sprDifficulty.y = leftArrow.y + 10;
 
 		super.create();
+
+		#if mobileC
+		addVirtualPad(FULL, A_B);
+		#end
 	}
 
 	function changediff(diff:Int = 1)
@@ -337,12 +341,17 @@ class StoryMenuState extends MusicBeatState
 					new FlxTimer().start(1, function(tmr:FlxTimer)
 					{
 						// LoadingState.loadAndSwitchState(new PlayState(), true); //save this code for the cutsceneless build of the game
-						var video:MP4Handler = new MP4Handler();
-						video.playMP4(Paths.video('tooslowcutscene1'));
-						video.finishCallback = function()
-						{
+						var video:VideoPlayer = new VideoPlayer();
+						video('videos/tooslowcutscene1.webm');
+						video.finishCallback = () -> {
+							remove(video);
 							LoadingState.loadAndSwitchState(new PlayState());
 						}
+						video.ownCamera();
+						video.setGraphicSize(Std.int(video.width * 2));
+						video.updateHitbox();
+						add(video);
+						video.play();
 					});
 				}
 			}

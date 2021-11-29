@@ -157,13 +157,18 @@ class GameOverSubstate extends MusicBeatSubstate
 			bfdeathshit.cameras = [coolcamera];
 			add(bfdeathshit);
 			bf.alpha = 0;
-			var video:MP4Handler = new MP4Handler();
-			video.playMP4(Paths.video('BfFuckingDies'));
-			video.finishCallback = function()
-			{
+			var video:VideoPlayer = new VideoPlayer();
+			video('videos/BfFuckingDies');
+			video.finishCallback = () -> {
+				remove(video);
 				FlxG.camera.fade(FlxColor.BLACK, 0, true);
 				bfdeathshit.visible = true;
 			}
+			video.ownCamera();
+			video.setGraphicSize(Std.int(video.width * 2));
+			video.updateHitbox();
+			add(video);
+			video.play();
 		}
 		else if (PlayState.SONG.song.toLowerCase() == 'black-sun')
 		{
@@ -210,6 +215,14 @@ class GameOverSubstate extends MusicBeatSubstate
 		FlxG.camera.target = null;
 
 		bf.playAnim('firstDeath');
+		
+		#if mobileC
+		addVirtualPad(NONE, A_B);
+		var camcontrol = new FlxCamera();
+		FlxG.cameras.add(camcontrol);
+		camcontrol.bgColor.alpha = 0;
+		_virtualpad.cameras = [camcontrol];	
+		#end
 	}
 
 	function startCountdown():Void

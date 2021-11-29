@@ -22,7 +22,7 @@ import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
-import io.newgrounds.NG;
+// import io.newgrounds.NG;
 import lime.app.Application;
 import openfl.Assets;
 
@@ -59,14 +59,18 @@ class TitleState extends MusicBeatState
 
 		FlxG.worldBounds.set(0, 0);
 
-		#if polymod
-		polymod.Polymod.init({modRoot: "mods", dirs: ['introMod']});
+		#if android
+		FlxG.android.preventDefaultKeys = [BACK];
 		#end
 
-		#if sys
-		if (!sys.FileSystem.exists(Sys.getCwd() + "/assets/replays"))
-			sys.FileSystem.createDirectory(Sys.getCwd() + "/assets/replays");
-		#end
+		// #if polymod
+		// polymod.Polymod.init({modRoot: "mods", dirs: ['introMod']});
+		// #end
+
+		// #if sys
+		// if (!sys.FileSystem.exists(Sys.getCwd() + "/assets/replays"))
+		// 	sys.FileSystem.createDirectory(Sys.getCwd() + "/assets/replays");
+		// #end
 
 		@:privateAccess
 		{
@@ -273,7 +277,7 @@ class TitleState extends MusicBeatState
 
 		var pressedEnter:Bool = controls.ACCEPT;
 
-		#if mobile
+		// #if mobile
 		for (touch in FlxG.touches.list)
 		{
 			if (touch.justPressed)
@@ -281,7 +285,7 @@ class TitleState extends MusicBeatState
 				pressedEnter = true;
 			}
 		}
-		#end
+		// #end
 
 		if (FlxG.keys.justPressed.UP)
 			if (code == 0)
@@ -343,12 +347,17 @@ class TitleState extends MusicBeatState
 				var http = new haxe.Http("https://raw.githubusercontent.com/KadeDev/Kade-Engine/master/version.downloadMe");
 				var returnedData:Array<String> = [];
 
-				var video:MP4Handler = new MP4Handler();
-				video.playMP4(Paths.video('bothCreditsAndIntro'));
-				video.finishCallback = function()
-				{
+				var video:VideoPlayer = new VideoPlayer();
+				video('videos/bothCreditsAndIntro.webm');
+				video.finishCallback = () -> {
+					remove(video);
 					LoadingState.loadAndSwitchState(new MainMenuState());
 				}
+				video.ownCamera();
+				video.setGraphicSize(Std.int(video.width * 2));
+				video.updateHitbox();
+				add(video);
+				video.play();
 
 				http.onData = function(data:String)
 				{

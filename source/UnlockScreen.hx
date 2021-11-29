@@ -42,6 +42,10 @@ class UnlockScreen extends MusicBeatState
         });
 
         super.create();
+
+		#if mobileC
+		addVirtualPad(NONE, A);
+		#end
     }
 
     override function update(elapsed:Float)
