@@ -110,8 +110,9 @@ class VideoPlayer extends FlxSprite
 		    sound.time = sound.length * soundMultiplier;
 		    doShit = true;
 		}
-        
 		
+		videoplayer.SKIP_STEP_LIMIT = 10;
+        
 		if (ownCamera) {
 		    var cam = new FlxCamera();
 	        FlxG.cameras.add(cam);
