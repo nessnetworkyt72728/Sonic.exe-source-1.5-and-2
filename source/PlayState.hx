@@ -1971,7 +1971,7 @@ class PlayState extends MusicBeatState
 				controls.setVirtualPadPlayState(mcontrols._virtualPad, FULL, A);
 			case HITBOX:
 				controls.setHitBox(mcontrols._hitbox);
-				controls.setVirtualPadPlayState(mcontrols._virtualPad, A);
+				controls.setHitbox(mcontrols._virtualPad, A);
 			default:
 		}
 		trackedinputs = controls.trackedinputs;
