@@ -5134,7 +5134,7 @@ class PlayState extends MusicBeatState
 					if (curSong == 'triple-trouble')
 					{
 						var video = new VideoPlayer('assets/videos/soundtestcodes.webm', true, true, -1, null, null, null, null);
-						video.finishCallback = () -> {
+						video.endcallback = () -> {
 							remove(video);
 							LoadingState.loadAndSwitchState(new MainMenuState());
 						}
@@ -5202,7 +5202,7 @@ class PlayState extends MusicBeatState
 					{
 						FlxG.save.data.storyProgress = 1;
 						var video = new VideoPlayer('assets/videos/tooslowcutscene2.webm', true, true, -1, null, null, null, null);
-						video.finishCallback = () -> {
+						video.endcallback = () -> {
 							remove(video);
 							LoadingState.loadAndSwitchState(new PlayState());
 						}
@@ -5219,7 +5219,7 @@ class PlayState extends MusicBeatState
 						FlxG.save.data.storyProgress = 2;
 						FlxG.save.data.soundTestUnlocked = true;
 						var video = new VideoPlayer('assets/videos/youcantruncutscene2.webm', true, true, -1, null, null, null, null);
-						video.finishCallback = () -> {
+						video.endcallback = () -> {
 							remove(video);
 							LoadingState.loadAndSwitchState(new PlayState());
 						}
@@ -5265,7 +5265,7 @@ class PlayState extends MusicBeatState
 						}
 					case 'too-slow':
 						var video = new VideoPlayer('assets/videos/tooslowcutscene2.webm', true, true, -1, null, null, null, null);
-						video.finishCallback = () -> {
+						video.endcallback = () -> {
 							remove(video);
 							LoadingState.loadAndSwitchState(new MainMenuState());
 						}
@@ -5274,7 +5274,7 @@ class PlayState extends MusicBeatState
 						video.play();
 					case 'you-cant-run':
 						var video = new VideoPlayer('assets/videos/youcantruncutscene2.webm', true, true, -1, null, null, null, null);
-						video.finishCallback = () -> {
+						video.endcallback = () -> {
 							remove(video);
 							LoadingState.loadAndSwitchState(new MainMenuState());
 						}
@@ -5283,7 +5283,7 @@ class PlayState extends MusicBeatState
 						video.play();
 					case 'triple-trouble':
 						var video = new VideoPlayer('assets/videos/soundtestcodes.webm', true, true, -1, null, null, null, null);
-						video.finishCallback = () -> {
+						video.endcallback = () -> {
 							remove(video);
 							LoadingState.loadAndSwitchState(new MainMenuState());
 						}

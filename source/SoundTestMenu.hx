@@ -357,12 +357,10 @@ class SoundTestMenu extends MusicBeatState
 				});
 				new FlxTimer().start(2.1, function(tmr:FlxTimer)
 				{
-					var video = new VideoPlayer('videos/Keel.webm');
-					video.finishCallback = () -> {
+					var video = new VideoPlayer('assets/videos/Keel.webm', true, true, -1, null, null, null, null);
+					video.endcallback = () -> {
 						remove(video);
 					}
-					video.ownCamera();
-					video.setGraphicSize(Std.int(video.width * 2));
 					video.updateHitbox();
 					add(video);
 					video.play();
@@ -381,12 +379,10 @@ class SoundTestMenu extends MusicBeatState
 				});
 				new FlxTimer().start(2.1, function(tmr:FlxTimer)
 				{
-					var video = new VideoPlayer('videos/Milky.webm');
-					video.finishCallback = () -> {
+					var video = new VideoPlayer('assets/videos/Milky.webm', true, true, -1, null, null, null, null);
+					video.endcallback = () -> {
 						remove(video);
 					}
-					video.ownCamera();
-					video.setGraphicSize(Std.int(video.width * 2));
 					video.updateHitbox();
 					add(video);
 					video.play();

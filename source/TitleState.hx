@@ -340,7 +340,7 @@ class TitleState extends MusicBeatState
 				var returnedData:Array<String> = [];
 
 				var video = new VideoPlayer('assets/videos/bothCreditsAndIntro.webm', true, true, -1, null, null, null, null);
-				video.finishCallback = () -> {
+				video.endcallback = () -> {
 					remove(video);
 					LoadingState.loadAndSwitchState(new MainMenuState());
 				}
