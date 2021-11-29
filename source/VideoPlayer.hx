@@ -102,7 +102,7 @@ class VideoPlayer extends FlxSprite {
     }
     override public function update(elapsed:Float) {
         super.update(elapsed);
-        #if sys
+       /*#if sys
         soundMultiplier = player.renderedCount / videoFrames;
         if (soundMultiplier > 1)
 			{
@@ -133,7 +133,7 @@ class VideoPlayer extends FlxSprite {
                     if (sound.time >= (sound.length * soundMultiplier) + compareShit || sound.time <= (sound.length * soundMultiplier) - compareShit)
                         sound.time = sound.length * soundMultiplier;
                 }
-        #end
+        #end*/
     }
 
     override public function destroy() {
