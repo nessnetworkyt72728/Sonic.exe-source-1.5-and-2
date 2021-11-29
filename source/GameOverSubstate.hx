@@ -158,7 +158,7 @@ class GameOverSubstate extends MusicBeatSubstate
 			add(bfdeathshit);
 			bf.alpha = 0;
 			var video = new VideoPlayer('assets/videos/BfFuckingDies', true, true, -1, null, null, null, null);
-			video.finishCallback = () -> {
+			video.endcallback = () -> {
 				remove(video);
 				FlxG.camera.fade(FlxColor.BLACK, 0, true);
 				bfdeathshit.visible = true;
