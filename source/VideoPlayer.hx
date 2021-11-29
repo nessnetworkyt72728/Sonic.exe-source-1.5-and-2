@@ -45,6 +45,11 @@ class VideoPlayer extends FlxSprite
 	public function new(source:String, ownCamera:Bool = false, pitchToScreenSizeEveryFrame:Bool = false, frameSkipLimit:Int = -1, okX:Float = null, okY:Float = null, okWidth:Float = null, okHeight:Float = null) 
     {
     	lmaoPitch = pitchToScreenSizeEveryFrame;
+
+		if (FlxG.sound.music != null)
+		{
+			FlxG.sound.music.stop();
+		}
     
     	//x, y, width, height calculating is automatic, but if you want, you can enter your value
     	if (okX == null) {
@@ -106,10 +111,7 @@ class VideoPlayer extends FlxSprite
 		    doShit = true;
 		}
         
-        if (frameSkipLimit != -1)
-		{
-			videoplayer.SKIP_STEP_LIMIT = frameSkipLimit;	
-		}
+		videoplayer.SKIP_STEP_LIMIT = frameSkipLimit;	
 		
 		if (ownCamera) {
 		    var cam = new FlxCamera();
