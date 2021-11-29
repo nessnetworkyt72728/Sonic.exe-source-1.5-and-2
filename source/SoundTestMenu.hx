@@ -47,8 +47,10 @@ class SoundTestMenu extends MusicBeatState
 
     override function create()
         {
+			#if windows
 			DiscordClient.changePresence('In the Sound Test Menu', null);
-
+            #end 
+			
 			new FlxTimer().start(0.1, function(tmr:FlxTimer)
 				{
 					FlxG.sound.playMusic(Paths.music('breakfast'));
