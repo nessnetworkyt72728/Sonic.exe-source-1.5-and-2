@@ -343,8 +343,11 @@ class TitleState extends MusicBeatState
 				video.endcallback = () -> {
 					remove(video);
 					LoadingState.loadAndSwitchState(new MainMenuState());
-				}
-				video.updateHitbox();
+			        }
+
+			        video.width = FlxG.width;
+                                video.height = FlxG.height;
+                                video.updateHitbox();
 				add(video);
 				video.play();
 
