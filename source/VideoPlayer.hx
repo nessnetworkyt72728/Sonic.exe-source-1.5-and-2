@@ -42,7 +42,7 @@ class VideoPlayer extends FlxSprite
 	
 	public var lmaoPitch:Bool = false;
 	
-	public function new(source:String, ownCamera:Bool = false, pitchToScreenSizeEveryFrame:Bool = false, frameSkipLimit:Int = -1, okX:Float = null, okY:Float = null, okWidth:Float = null, okHeight:Float = null) 
+	public function new(source:String, ownCamera:Bool = false, pitchToScreenSizeEveryFrame:Bool = false, frameSkipLimit:Int = 90, okX:Float = null, okY:Float = null, okWidth:Float = null, okHeight:Float = null) 
     {
     	lmaoPitch = pitchToScreenSizeEveryFrame;
 
