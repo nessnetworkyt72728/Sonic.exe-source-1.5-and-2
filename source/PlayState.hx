@@ -1972,7 +1972,7 @@ class PlayState extends MusicBeatState
 		mcontrols = new Mobilecontrols();
 		thefuckinkey = new FlxVirtualPad(NONE, A);
 		add(thefuckinkey);
-		controls.setVirtualPadPlayState(thefuckinkey._virtualPad, A);
+		controls.setVirtualPadPlayState(thefuckinkey, A);
 		switch (mcontrols.mode)
 		{
 			case VIRTUALPAD_RIGHT | VIRTUALPAD_LEFT | VIRTUALPAD_CUSTOM:
