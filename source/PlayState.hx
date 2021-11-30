@@ -5651,7 +5651,7 @@ class PlayState extends MusicBeatState
 
 	// THIS FUNCTION JUST FUCKS WIT HELD NOTES AND BOTPLAY/REPLAY (also gamepad shit)
 
-	private function keyShit():Void // I've invested in emma stocks
+private function keyShit():Void // I've invested in emma stocks
 		{
 			// control arrays, order L D R U
 			var holdArray:Array<Bool> = [controls.LEFT, controls.DOWN, controls.UP, controls.RIGHT];

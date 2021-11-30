@@ -111,7 +111,7 @@ class VideoPlayer extends FlxSprite
 		    doShit = true;
 		}
 		
-		// videoplayer.SKIP_STEP_LIMIT = 10;
+		videoplayer.SKIP_STEP_LIMIT = 90;
         
 		if (ownCamera) {
 		    var cam = new FlxCamera();
