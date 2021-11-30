@@ -361,6 +361,7 @@ class SoundTestMenu extends MusicBeatState
 					video.endcallback = () -> {
 						remove(video);
 					}
+					video.setGraphicSize(Std.int(video.width * 2));
 					video.updateHitbox();
 					add(video);
 					video.play();
@@ -383,6 +384,7 @@ class SoundTestMenu extends MusicBeatState
 					video.endcallback = () -> {
 						remove(video);
 					}
+					video.setGraphicSize(Std.int(video.width * 2));
 					video.updateHitbox();
 					add(video);
 					video.play();

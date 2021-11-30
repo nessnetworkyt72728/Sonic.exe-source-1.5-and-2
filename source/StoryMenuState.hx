@@ -346,6 +346,7 @@ class StoryMenuState extends MusicBeatState
 							remove(video);
 							LoadingState.loadAndSwitchState(new PlayState());
 						}
+						video.setGraphicSize(Std.int(video.width * 2));
 						video.updateHitbox();
 						add(video);
 						video.play();

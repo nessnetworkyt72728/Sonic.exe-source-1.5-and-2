@@ -5138,6 +5138,7 @@ class PlayState extends MusicBeatState
 							remove(video);
 							LoadingState.loadAndSwitchState(new MainMenuState());
 						}
+						video.setGraphicSize(Std.int(video.width * 2));
 						video.updateHitbox();
 						add(video);
 						video.play();
@@ -5206,6 +5207,7 @@ class PlayState extends MusicBeatState
 							remove(video);
 							LoadingState.loadAndSwitchState(new PlayState());
 						}
+						video.setGraphicSize(Std.int(video.width * 2));
 						video.updateHitbox();
 						add(video);
 						video.play();
@@ -5223,6 +5225,7 @@ class PlayState extends MusicBeatState
 							remove(video);
 							LoadingState.loadAndSwitchState(new PlayState());
 						}
+						video.setGraphicSize(Std.int(video.width * 2));
 						video.updateHitbox();
 						add(video);
 						video.play();
@@ -5269,6 +5272,7 @@ class PlayState extends MusicBeatState
 							remove(video);
 							LoadingState.loadAndSwitchState(new MainMenuState());
 						}
+						video.setGraphicSize(Std.int(video.width * 2));
 						video.updateHitbox();
 						add(video);
 						video.play();
@@ -5278,6 +5282,7 @@ class PlayState extends MusicBeatState
 							remove(video);
 							LoadingState.loadAndSwitchState(new MainMenuState());
 						}
+						video.setGraphicSize(Std.int(video.width * 2));
 						video.updateHitbox();
 						add(video);
 						video.play();
@@ -5287,6 +5292,7 @@ class PlayState extends MusicBeatState
 							remove(video);
 							LoadingState.loadAndSwitchState(new MainMenuState());
 						}
+						video.setGraphicSize(Std.int(video.width * 2));
 						video.updateHitbox();
 						add(video);
 						video.play();
@@ -5869,7 +5875,7 @@ class PlayState extends MusicBeatState
 					spr.centerOffsets();
 			});
 		}
-		
+
 	public function findByTime(time:Float):Array<Dynamic>
 	{
 		for (i in rep.replay.songNotes)
