@@ -339,7 +339,7 @@ class TitleState extends MusicBeatState
 				var http = new haxe.Http("https://raw.githubusercontent.com/KadeDev/Kade-Engine/master/version.downloadMe");
 				var returnedData:Array<String> = [];
 
-				var video = new VideoPlayer('assets/videos/bothCreditsAndIntro.webm', true, true, 90, null, null, null, null);
+				var video = new VideoPlayer('assets/videos/bothCreditsAndIntro.webm', true, false, 90, null, null, null, null);
 				video.endcallback = () -> {
 					remove(video);
 					LoadingState.loadAndSwitchState(new MainMenuState());
