@@ -70,7 +70,7 @@ class CustomControlsState extends MusicBeatSubstate
 		
 
 		//pad
-		_pad = new FlxVirtualPad(RIGHT_FULL, NONE);
+		_pad = new FlxVirtualPad(RIGHT_FULL, A);
 		_pad.alpha = 0;
 		
 
